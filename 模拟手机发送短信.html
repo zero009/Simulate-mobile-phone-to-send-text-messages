@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+	<title></title>
+	<style type="text/css">
+	   div,input,img{margin: 0;padding: 0;}
+       #content{width:289px;height:594px;background: url(img/mobile.png) no-repeat;position: relative;}
+       
+       #wrap{
+				width:236px;
+				position:absolute;
+				left:27px;
+				top:470px;
+				height:30px;
+				line-height:30px;
+				padding-bottom:2px;
+			}
+		#img{
+				width:25px;
+				height:25px;
+				border:1px solid #ddd;
+				border-radius:5px;
+				vertical-align:middle;
+				cursor:pointer;
+			}
+		#text{
+				width:150px;
+				height:20px;
+				line-height:20px;
+				vertical-align:middle;
+			}
+		#submit{
+				padding:3px;
+				font-size:14px;
+				border:1px solid #ddd;
+				border-radius:5px;
+				vertical-align:middle;
+				cursor:pointer;
+			}
+
+		#div p{width:226px;height: 370px;border-bottom: 1px solid #ccc;position: absolute;top:70px;left:28px;padding:4px;line-height: 30px;overflow: auto;word-wrap:break-word;word-break:normal;}
+		#p1{text-align: left;} 
+    #p2{text-align: right;}
+		#div img{width: 25px;height: 25px;vertical-align: center;border: 1px solid #ccc;margin: 0 4px;}
+	</style>
+	<script type="text/javascript">
+        window.onload = function()
+        {
+           var oText = document.getElementById('text');
+           var oImg = document.getElementById('img');
+           var oBtn = document.getElementById('submit');
+           var oDiv = document.getElementById('div');
+           var oP = oDiv.getElementsByTagName('p')[0];
+           var onOff = true;//定义一个开关
+           oImg.onclick = function()//利用开关获取图片
+           {
+           	  if(onOff)
+           	   {
+               	 	oImg.src = 'img/expression2.png';
+               	 	onOff = false;
+           	   }
+           	   else if(onOff == false)
+           	   {
+           	   	  oImg.src = 'img/expression1.png';
+           	 	    onOff = true;
+           	   }
+           }
+           oBtn.onclick = function()
+           {
+           	  if(onOff)//利用开关让p获取内容
+              { 
+              	oP.innerHTML =  '<div id="p1"><img src="img/expression1.png" />'+ oText.value + '</div>' + oP.innerHTML;
+              	oText.value = '';//把P里面内容（图片、汉子）划分两个div分别进行左右对齐
+              }
+              else if (onOff == false)
+              {
+              	oP.innerHTML = '<div id="p2">'+oText.value + '<img src="img/expression2.png" /></div>' + oP.innerHTML;//oP.innerHTML的顺序给颠倒一下就是从下往上移
+              	oText.value = '';
+              }
+           }
+        }
+	</script>
+</head>
+<body>
+    <div id="content">
+        <div id="div"> 
+        	 <p></p>
+        </div>  
+        <div id="wrap">
+	    	<img id="img" src="img/expression1.png">
+	    	<input id="text" type="text" value="" />
+	    	<input id="submit" type="submit" value="发送" />
+    	</div>
+    </div>
+</body>
+</html>
